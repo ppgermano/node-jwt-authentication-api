@@ -10,6 +10,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
 
+// No security
+app.get('/no-auth', (req, res) => {
+    res.status(200).send({ status: 'Success', data: 'xyz' });
+});
+
 // use JWT auth to secure the api
 app.use(jwt());
 
@@ -21,6 +26,6 @@ app.use(errorHandler);
 
 // start server
 const port = process.env.NODE_ENV === 'production' ? 80 : 4000;
-const server = app.listen(port, function () {
+const server = app.listen(port, function() {
     console.log('Server listening on port ' + port);
 });
