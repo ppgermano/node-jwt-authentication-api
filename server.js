@@ -11,9 +11,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 // No security
-app.get('/no-auth', (req, res) => {
-    res.status(200).send({ status: 'Success', data: 'xyz' });
-});
+app.use('/no-auth', require('./no_auth/no_auth.controller'));
 
 // use JWT auth to secure the api
 app.use(jwt());
